@@ -1,2 +1,3 @@
 gist
 .venv
+*.sqlite3
