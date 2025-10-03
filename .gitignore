@@ -1,3 +1,4 @@
 gist
 .venv
 *.sqlite3
+/api/techlayoffs/.coverage
