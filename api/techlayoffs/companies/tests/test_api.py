@@ -7,7 +7,9 @@ from companies.models import Company
 
 
 companies_url = reverse("companies-list")
-pytestmark = [pytest.mark.django_db, ]
+pytestmark = [
+    pytest.mark.django_db,
+]
 
 
 def test_zero_companies_should_return_empty_list(client: Client) -> None:

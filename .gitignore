@@ -2,3 +2,5 @@ gist
 .venv
 *.sqlite3
 /api/techlayoffs/.coverage
+__pycache__/
+.pytest_cache/
