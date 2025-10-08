@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.request import Request
 from .models import Company
 from .serializers import CompanySerializer
+from fibonacci.dynamic import fibonacci_dynamic
 
 
 class CompanyViewSet(ModelViewSet):
@@ -25,3 +26,12 @@ def send_company_email(request: Request) -> Response:
     return Response(
         {"status": "success", "info": "email sent successfully"}, status=200
     )
+
+
+@api_view(http_method_names=["GET"])
+def fibonacci_view(request: Request, n: int) -> Response:
+    try:
+        result = fibonacci_dynamic(n)
+        return Response({"result": result}, status=200)
+    except ValueError as e:
+        return Response({"error": str(e)}, status=400)

@@ -20,10 +20,11 @@ from django.urls import path
 from django.urls.conf import include
 
 from companies.urls import companies_router
-from companies.views import send_company_email
+from companies.views import fibonacci_view, send_company_email
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include(companies_router.urls)),
     path("send-email/", send_company_email),
+    path("fibonacci/<int:n>/", fibonacci_view),
 ]

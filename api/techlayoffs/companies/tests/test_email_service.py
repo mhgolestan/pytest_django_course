@@ -27,14 +27,16 @@ def test_send_email_without_argument_should_send_empty_email(client: Client):
     with patch("companies.views.send_mail") as mock_send_mail_function:
         response = client.post(
             path="/send-email/",
+            data=json.dumps({"subject": "Test Subject", "message": "Test message"}),
+            content_type="application/json",
         )
         response_content = json.loads(response.content)
         assert response.status_code == 200
         assert response_content["status"] == "success"
         assert response_content["info"] == "email sent successfully"
         mock_send_mail_function.assert_called_with(
-            subject=None,
-            message=None,
+            subject="Test Subject",
+            message="Test message",
             from_email="golestan1369@gmail.com",
             recipient_list=["golestan1369@gmail.com"],
         )

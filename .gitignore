@@ -4,3 +4,4 @@ gist
 /api/techlayoffs/.coverage
 __pycache__/
 .pytest_cache/
+api/techlayoffs/fibonacci/
