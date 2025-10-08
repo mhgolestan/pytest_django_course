@@ -32,7 +32,9 @@ def send_company_email(request: Request) -> Response:
     )
 
 
-def _get_validated_fibonacci_n(request: Request) -> Union[tuple[int, None], tuple[None, Response]]:
+def _get_validated_fibonacci_n(
+    request: Request,
+) -> Union[tuple[int, None], tuple[None, Response]]:
     """
     Parses and validates the 'n' query parameter for the Fibonacci view.
 

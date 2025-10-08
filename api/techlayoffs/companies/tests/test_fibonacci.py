@@ -18,8 +18,16 @@ def test_fibonacci_view_with_zero(client: Client):
 @pytest.mark.parametrize(
     "query_param, expected_status, expected_response",
     [
-        ("n=-1", 400, {"error": "Fibonacci sequence is not defined for negative numbers"}),
-        ("n=abc", 400, {"error": "Invalid input 'abc'. Parameter 'n' must be an integer."}),
+        (
+            "n=-1",
+            400,
+            {"error": "Fibonacci sequence is not defined for negative numbers"},
+        ),
+        (
+            "n=abc",
+            400,
+            {"error": "Invalid input 'abc'. Parameter 'n' must be an integer."},
+        ),
         ("", 400, {"error": "Query parameter 'n' is required."}),
     ],
 )
