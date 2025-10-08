@@ -38,4 +38,4 @@ jobs:
 
     - name: Run fibonacci tests
       run: |
-        pytest  api/techlayoffs/fibonacci -s -v --durations=0
+        pytest  api/techlayoffs/fibonacci/tests -s -v --durations=0

@@ -1,9 +1,9 @@
 from typing import Callable
 
 import pytest
-from fibonacci.dynamic import fibonacci_dynamic, fibonacci_dynamic_v2
-from fibonacci.cached import fibonacci_cached, fibonacci_lru_cached
-from fibonacci.naive import fibonacci_naive
+from api.techlayoffs.fibonacci.dynamic import fibonacci_dynamic, fibonacci_dynamic_v2
+from api.techlayoffs.fibonacci.cached import fibonacci_cached, fibonacci_lru_cached
+from api.techlayoffs.fibonacci.naive import fibonacci_naive
 
 
 @pytest.mark.parametrize("n, expected", [(0, 0), (1, 1), (2, 1), (20, 6765)])
