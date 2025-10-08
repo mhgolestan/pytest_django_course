@@ -26,5 +26,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include(companies_router.urls)),
     path("send-email/", send_company_email),
-    path("fibonacci/<int:n>/", fibonacci_view),
+    path("fibonacci/", fibonacci_view),
 ]
