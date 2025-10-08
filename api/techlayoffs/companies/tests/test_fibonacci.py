@@ -1,3 +1,4 @@
+import pytest
 from django.test import Client
 
 
@@ -33,3 +34,10 @@ def test_fibonacci_view_without_n_query_param(client: Client):
     response = client.get("/fibonacci/")
     assert response.status_code == 400
     assert response.json() == {"error": "Query parameter 'n' is required."}
+
+
+@pytest.mark.slow
+@pytest.mark.parametrize("n", [30, 35, 38])
+def test_fibonacci_view_stress_test(client: Client, n: int):
+    response = client.get(f"/fibonacci/?n={n}")
+    assert response.status_code == 200

@@ -7,38 +7,8 @@ from rest_framework.request import Request
 from .models import Company
 from .serializers import CompanySerializer
 from fibonacci.dynamic import fibonacci_dynamic
+from typing import Union
 
-
-class CompanyViewSet(ModelViewSet):
-    serializer_class = CompanySerializer
-    queryset = Company.objects.all().order_by("-last_update")
-    pagination_class = PageNumberPagination
-
-
-@api_view(http_method_names=["POST"])
-def send_company_email(request: Request) -> Response:
-    send_mail(
-        subject=request.data.get("subject"),
-        message=request.data.get("message"),
-        from_email="golestan1369@gmail.com",
-        recipient_list=["golestan1369@gmail.com"],
-    )
-    return Response(
-        {"status": "success", "info": "email sent successfully"}, status=200
-    )
-
-
-from django.core.mail import send_mail
-from rest_framework.viewsets import ModelViewSet
-from rest_framework.pagination import PageNumberPagination
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from rest_framework.request import Request
-from .models import Company
-from .serializers import CompanySerializer
-from fibonacci.dynamic import fibonacci_dynamic
-
-# Constants for email service
 DEFAULT_EMAIL_SENDER = "golestan1369@gmail.com"
 DEFAULT_EMAIL_RECIPIENTS = ["golestan1369@gmail.com"]
 
@@ -62,7 +32,7 @@ def send_company_email(request: Request) -> Response:
     )
 
 
-def _get_validated_fibonacci_n(request: Request) -> tuple[int | None, Response | None]:
+def _get_validated_fibonacci_n(request: Request) -> Union[tuple[int, None], tuple[None, Response]]:
     """
     Parses and validates the 'n' query parameter for the Fibonacci view.
 
