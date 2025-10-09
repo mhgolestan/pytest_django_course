@@ -24,10 +24,13 @@ def companies(request) -> Company:
     company_obj = Company.objects.create(name=company_name)
     yield company_obj
 
-@pytest.mark.parametrize("companies",
-                         ["amazon", "Google", "Apple"],
-                         ids=["amazon", "Google", "Apple"],
-                         indirect=True)
+
+@pytest.mark.parametrize(
+    "companies",
+    ["amazon", "Google", "Apple"],
+    ids=["amazon", "Google", "Apple"],
+    indirect=True,
+)
 def test_one_company_exits_should_pass(client: Client, companies: Company) -> None:
     test_company = companies
     response = client.get(companies_url)
