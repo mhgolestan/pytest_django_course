@@ -18,8 +18,18 @@ def test_zero_companies_should_return_empty_list(client: Client) -> None:
     assert json.loads(response.content) == []
 
 
-def test_one_company_exits_should_pass(client: Client) -> None:
-    test_company = Company.objects.create(name="Amazon")
+@pytest.fixture
+def companies(request) -> Company:
+    company_name = request.param
+    company_obj = Company.objects.create(name=company_name)
+    yield company_obj
+
+@pytest.mark.parametrize("companies",
+                         ["amazon", "Google", "Apple"],
+                         ids=["amazon", "Google", "Apple"],
+                         indirect=True)
+def test_one_company_exits_should_pass(client: Client, companies: Company) -> None:
+    test_company = companies
     response = client.get(companies_url)
     assert response.status_code == 200
     response_content = json.loads(response.content)[0]
