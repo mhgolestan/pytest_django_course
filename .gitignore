@@ -4,3 +4,5 @@ gist
 /api/techlayoffs/.coverage
 __pycache__/
 .pytest_cache/
+/dist/
+/allure-reports/
