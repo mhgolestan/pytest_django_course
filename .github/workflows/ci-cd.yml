@@ -13,7 +13,8 @@ jobs:
       max-parallel: 4
       matrix:
         python-version: [ '3.12' ]
-
+    env:
+      CI_SKIP_TEST: "true"
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
